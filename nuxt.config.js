@@ -28,10 +28,6 @@ export default {
     "@nuxtjs/auth",
   ],
   auth: {
-    redirect: {
-      login: "/", // redirect user when not connected
-      callback: "/auth/signed-in",
-    },
     strategies: {
       local: {
         endpoints: {
@@ -52,6 +48,10 @@ export default {
         domain: process.env.AUTH0_DOMAIN,
         client_id: process.env.AUTH0_CLIENT_ID,
       },
+    },
+    redirect: {
+      login: "/", // redirect user when not connected
+      callback: "/auth/signed-in",
     },
   },
   build: {
