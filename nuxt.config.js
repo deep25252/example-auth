@@ -33,7 +33,17 @@ export default {
       callback: "/auth/signed-in",
     },
     strategies: {
-      local: false,
+      local: {
+        endpoints: {
+          login: { url: "/auth/login", method: "post", propertyName: "token" },
+          logout: { url: "/auth/logout", method: "post" },
+          user: false,
+        },
+        // tokenRequired: true,
+        tokenType: "Bearer",
+        // globalToken: true,
+        // autoFetchUser: true
+      },
       auth0: {
         domain: process.env.AUTH0_DOMAIN,
         client_id: process.env.AUTH0_CLIENT_ID,
