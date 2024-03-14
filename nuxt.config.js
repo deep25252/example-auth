@@ -1,6 +1,5 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -37,6 +36,29 @@ export default {
             propertyName: "token",
           },
           logout: { url: "/api/auth/logout", method: "post" },
+          user: false,
+        },
+        // tokenRequired: true,
+        tokenType: "Bearer",
+        // globalToken: true,
+        // autoFetchUser: true
+      },
+      auth0: {
+        domain: process.env.AUTH0_DOMAIN,
+        client_id: process.env.AUTH0_CLIENT_ID,
+      },
+    },
+    redirect: {
+      login: "/", // redirect user when not connected
+      callback: "/auth/signed-in",
+    },
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: "/auth/login", method: "post", propertyName: "token" },
+          logout: { url: "/auth/logout", method: "post" },
           user: false,
         },
         // tokenRequired: true,
